@@ -2,7 +2,7 @@ package com.example.addon;
 
 import com.example.addon.commands.CommandExample;
 import com.example.addon.hud.HudExample;
-import com.example.addon.modules.ModuleExample;
+import com.example.addon.modules.TridentDupeModule; // Uppdaterad till din trident dupe
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
@@ -15,35 +15,39 @@ import org.slf4j.Logger;
 
 public class AddonTemplate extends MeteorAddon {
     public static final Logger LOG = LogUtils.getLogger();
-    public static final Category CATEGORY = new Category("Example");
-    public static final HudGroup HUD_GROUP = new HudGroup("Example");
+    
+    // Skapar din kategori i Meteor-menyn för version 26.2/26.3
+    public static final Category CATEGORY = new Category("Dupe 26");
+    public static final HudGroup HUD_GROUP = new HudGroup("Dupe 26 HUD");
 
     @Override
     public void onInitialize() {
-        LOG.info("Initializing Meteor Addon Template");
+        LOG.info("Initierar Trident Dupe Addon för 26.2 och 26.3...");
 
-        // Modules
-        Modules.get().add(new ModuleExample());
+        // 1. Registrera moduler
+        Modules.get().add(new TridentDupeModule(CATEGORY));
 
-        // Commands
+        // 2. Registrera kommandon (om du har kvar exempelkommandot)
         Commands.add(new CommandExample());
 
-        // HUD
+        // 3. Registrera HUD-element (om du har kvar exempel-HUD)
         Hud.get().register(HudExample.INFO);
     }
 
     @Override
     public void onRegisterCategories() {
+        // Registrerar fliken i Meteor GUI
         Modules.registerCategory(CATEGORY);
+    }
+
+    @Override
+    public GithubRepo getGithubRepo() {
+        // Valfritt: Länkar till din GitHub om du vill ha automatiska uppdateringar
+        return new GithubRepo("MeteorDevelopment", "addon-template");
     }
 
     @Override
     public String getPackage() {
         return "com.example.addon";
-    }
-
-    @Override
-    public GithubRepo getRepo() {
-        return new GithubRepo("MeteorDevelopment", "meteor-addon-template");
     }
 }
