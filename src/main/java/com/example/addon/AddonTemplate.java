@@ -41,12 +41,6 @@ public class AddonTemplate extends MeteorAddon {
     }
 
     @Override
-    public GithubRepo getGithubRepo() {
-        // Valfritt: Länkar till din GitHub om du vill ha automatiska uppdateringar
-        return new GithubRepo("MeteorDevelopment", "addon-template");
-    }
-
-    @Override
     public String getPackage() {
         return "com.example.addon";
     }
