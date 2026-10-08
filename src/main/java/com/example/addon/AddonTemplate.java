@@ -2,7 +2,7 @@ package com.example.addon;
 
 import com.example.addon.commands.CommandExample;
 import com.example.addon.hud.HudExample;
-import com.example.addon.modules.TridentDupeModule; // Uppdaterad till din trident dupe
+import com.example.addon.modules.TridentDupe; // Uppdaterad till din trident dupe
 import com.mojang.logging.LogUtils;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
@@ -25,7 +25,7 @@ public class AddonTemplate extends MeteorAddon {
         LOG.info("Initierar Trident Dupe Addon för 26.2 och 26.3...");
 
         // 1. Registrera moduler
-        Modules.get().add(new TridentDupeModule(CATEGORY));
+        Modules.get().add(new TridentDupe(CATEGORY));
 
         // 2. Registrera kommandon (om du har kvar exempelkommandot)
         Commands.add(new CommandExample());
