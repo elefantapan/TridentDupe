@@ -136,17 +136,17 @@ public class TridentDupe extends Module {
             int syncId = mc.player.containerMenu.containerId;
 
             if (durabilityManagement.get() && finalLowestHotbarSlot != 0) {
-                mc.gameMode.handleInventoryMouseClick(
+                mc.gameMode.handleContainerInput(
                     syncId, 44, 0, ContainerInput.SWAP, mc.player
                 );
 
                 if (dropTridents.get()) {
-                    mc.gameMode.handleInventoryMouseClick(
+                    mc.gameMode.handleContainerInput(
                         syncId, 44, 0, ContainerInput.THROW, mc.player
                     );
                 }
 
-                mc.gameMode.handleInventoryMouseClick(
+                mc.gameMode.handleContainerInput(
                     syncId,
                     36 + finalLowestHotbarSlot,
                     0,
@@ -155,7 +155,7 @@ public class TridentDupe extends Module {
                 );
             }
 
-            mc.gameMode.handleInventoryMouseClick(
+            mc.gameMode.handleContainerInput(
                 syncId, 36, 0, ContainerInput.SWAP, mc.player
             );
 
@@ -169,7 +169,7 @@ public class TridentDupe extends Module {
             mc.getConnection().send(packet);
 
             if (dropTridents.get()) {
-                mc.gameMode.handleInventoryMouseClick(
+                mc.gameMode.handleContainerInput(
                     syncId, 44, 0, ContainerInput.THROW, mc.player
                 );
             }
