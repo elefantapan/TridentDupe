@@ -1,0 +1,47 @@
+package com.example.addon.modules;
+
+import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.systems.modules.Category;
+import meteordevelopment.meteorclient.events.world.TickEvent;
+import meteordevelopment.orbit.EventHandler;
+import net.minecraft.item.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+
+public class TridentDupeModule extends Module {
+    
+    public TridentDupeModule(Category category) {
+        super(category, "trident-dupe-26", "Duplicerar tridents automatiskt via nätverkspaket i 26.2/26.3");
+    }
+
+    @EventHandler
+    private void onTick(TickEvent.Pre event) {
+        if (mc.player == null || mc.interactionManager == null || mc.player.networkHandler == null) return;
+
+        ItemStack mainHandItem = mc.player.getMainHandStack();
+        if (mainHandItem.getItem() != Items.TRIDENT) return;
+
+        if (mc.player.isUsingItem() && mc.player.getItemUseTimeLeft() <= 1) {
+            
+            // Tvinga iväg kast-paketet till servern
+            BlockPos playerPos = mc.player.getBlockPos();
+            mc.player.networkHandler.sendPacket(new PlayerActionC2SPacket(
+                PlayerActionC2SPacket.Action.RELEASE_USE_ITEM, 
+                playerPos, 
+                Direction.DOWN
+            ));
+
+            // Flytta tridenten blixtsnabbt från första hotbar-slotten (slot 36)
+            mc.interactionManager.clickSlot(
+                mc.player.currentScreenHandler.syncId, 
+                36, 
+                0, 
+                SlotActionType.QUICK_MOVE, 
+                mc.player
+            );
+        }
+    }
+}
