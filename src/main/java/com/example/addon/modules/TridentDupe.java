@@ -19,7 +19,7 @@ import net.minecraft.network.protocol.game.ServerboundContainerClickPacket;
 import net.minecraft.network.protocol.game.ServerboundContainerClosePacket;
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
@@ -137,12 +137,12 @@ public class TridentDupe extends Module {
 
             if (durabilityManagement.get() && finalLowestHotbarSlot != 0) {
                 mc.gameMode.handleInventoryMouseClick(
-                    syncId, 44, 0, ClickType.SWAP, mc.player
+                    syncId, 44, 0, ContainerInput.SWAP, mc.player
                 );
 
                 if (dropTridents.get()) {
                     mc.gameMode.handleInventoryMouseClick(
-                        syncId, 44, 0, ClickType.THROW, mc.player
+                        syncId, 44, 0, ContainerInput.THROW, mc.player
                     );
                 }
 
@@ -150,13 +150,13 @@ public class TridentDupe extends Module {
                     syncId,
                     36 + finalLowestHotbarSlot,
                     0,
-                    ClickType.SWAP,
+                    ContainerInput.SWAP,
                     mc.player
                 );
             }
 
             mc.gameMode.handleInventoryMouseClick(
-                syncId, 36, 0, ClickType.SWAP, mc.player
+                syncId, 36, 0, ContainerInput.SWAP, mc.player
             );
 
             ServerboundPlayerActionPacket packet =
@@ -170,7 +170,7 @@ public class TridentDupe extends Module {
 
             if (dropTridents.get()) {
                 mc.gameMode.handleInventoryMouseClick(
-                    syncId, 44, 0, ClickType.THROW, mc.player
+                    syncId, 44, 0, ContainerInput.THROW, mc.player
                 );
             }
 
