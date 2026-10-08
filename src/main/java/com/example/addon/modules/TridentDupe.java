@@ -137,20 +137,12 @@ public class TridentDupe extends Module {
 
             if (durabilityManagement.get() && finalLowestHotbarSlot != 0) {
                 mc.gameMode.handleInventoryMouseClick(
-                    syncId,
-                    44,
-                    0,
-                    ClickType.SWAP,
-                    mc.player
+                    syncId, 44, 0, ClickType.SWAP, mc.player
                 );
 
                 if (dropTridents.get()) {
                     mc.gameMode.handleInventoryMouseClick(
-                        syncId,
-                        44,
-                        0,
-                        ClickType.THROW,
-                        mc.player
+                        syncId, 44, 0, ClickType.THROW, mc.player
                     );
                 }
 
@@ -164,28 +156,21 @@ public class TridentDupe extends Module {
             }
 
             mc.gameMode.handleInventoryMouseClick(
-                syncId,
-                36,
-                0,
-                ClickType.SWAP,
-                mc.player
+                syncId, 36, 0, ClickType.SWAP, mc.player
             );
 
-            ServerboundPlayerActionPacket packet = new ServerboundPlayerActionPacket(
-                ServerboundPlayerActionPacket.Action.RELEASE_USE_ITEM,
-                BlockPos.ZERO,
-                Direction.DOWN
-            );
+            ServerboundPlayerActionPacket packet =
+                new ServerboundPlayerActionPacket(
+                    ServerboundPlayerActionPacket.Action.RELEASE_USE_ITEM,
+                    BlockPos.ZERO,
+                    Direction.DOWN
+                );
 
             mc.getConnection().send(packet);
 
             if (dropTridents.get()) {
                 mc.gameMode.handleInventoryMouseClick(
-                    syncId,
-                    44,
-                    0,
-                    ClickType.THROW,
-                    mc.player
+                    syncId, 44, 0, ClickType.THROW, mc.player
                 );
             }
 
