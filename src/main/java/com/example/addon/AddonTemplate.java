@@ -25,7 +25,7 @@ public class AddonTemplate extends MeteorAddon {
         LOG.info("Initierar Trident Dupe Addon för 26.2 och 26.3...");
 
         // 1. Registrera moduler
-        Modules.get().add(new TridentDupe(CATEGORY));
+        Modules.get().add(new TridentDupe());
 
         // 2. Registrera kommandon (om du har kvar exempelkommandot)
         Commands.add(new CommandExample());
