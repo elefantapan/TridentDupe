@@ -4,6 +4,7 @@ import com.example.addon.commands.CommandExample;
 import com.example.addon.hud.HudExample;
 import com.example.addon.modules.TridentDupe; // Uppdaterad till din trident dupe
 import com.mojang.logging.LogUtils;
+import com.example.addon.modules.AnvilQuickCombine;
 import meteordevelopment.meteorclient.addons.GithubRepo;
 import meteordevelopment.meteorclient.addons.MeteorAddon;
 import meteordevelopment.meteorclient.commands.Commands;
@@ -26,6 +27,7 @@ public class AddonTemplate extends MeteorAddon {
 
         // 1. Registrera moduler
         Modules.get().add(new TridentDupe());
+        Modules.get().add(new AnvilQuickCombine());
 
         // 2. Registrera kommandon (om du har kvar exempelkommandot)
         Commands.add(new CommandExample());
